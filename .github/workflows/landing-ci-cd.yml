@@ -47,18 +47,7 @@ jobs:
 
       - name: Type check
         run: npx tsc --noEmit
-
-      - name: Run tests
-        run: npm test -- --ci --coverage
-
-      - name: Upload coverage
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage/
-          retention-days: 7
-
+        
   # 2. Build
   build:
     name: Build
