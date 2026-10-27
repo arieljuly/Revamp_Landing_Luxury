@@ -42,6 +42,9 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Generate Next.js types
+        run: npx next typegen
+
       - name: Type check
         run: npx tsc --noEmit
 
@@ -92,7 +95,7 @@ jobs:
             package-lock.json
           retention-days: 7
 
-  # 3. Deploy (main only) — example: Vercel
+  # 3. Deploy (main only)
   deploy:
     name: Deploy to Production
     runs-on: ubuntu-latest
