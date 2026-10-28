@@ -1,0 +1,88 @@
+import Image from "next/image";
+
+const services = [
+  {
+    image: "/assets/service-1.webp",
+    title: "Real estate done right",
+    text: "Nervous about your property adventure? Don’t be. Whether you’re getting ready to buy or sell your residence, exploring investment properties, or just curious about the market, our team ensures you get the best experience possible.",
+  },
+  {
+    image: "/assets/service-2.webp",
+    title: "Commercial & residential",
+    text: "Large or small, condo or mansion, we can find it and get it at the price that’s right. Fixer-uppers? Luxury? We can help with all of it. We live, work, and play in this community.",
+  },
+  {
+    image: "/assets/service-3.webp",
+    title: "Rely on expertise",
+    text: "Questions about affordability, credit, or loan options? Trust us to connect you with the right people and make sure you feel confident and educated every step of the way.",
+  },
+];
+
+export function Service() {
+  return (
+    <section className="py-24 md:py-32 bg-[#20312f] text-white" id="services">
+      <div className="w-full max-w-[1160px] mx-auto px-6 md:px-8">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
+          <div>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-[34px] h-[1px] bg-[#e2c99f]" />
+              <div className="text-[#e2c99f] text-[0.72rem] font-bold tracking-[0.18em] uppercase">
+                How we help
+              </div>
+            </div>
+            <h2 className="font-serif text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] tracking-[-0.04em]">
+              A better way to <em className="italic">move forward.</em>
+            </h2>
+          </div>
+          <p className="text-[#bec9c4] max-w-[330px] leading-relaxed text-sm md:text-base">
+            Local knowledge is not just a nice-to-have. It is how we make the
+            process feel clear, calm, and personal.
+          </p>
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {services.map((service, i) => (
+            <article
+              key={service.title}
+              className="relative group overflow-hidden min-h-[450px]"
+            >
+              {/* Background Image */}
+              <Image
+                fill
+                sizes="(max-width: 800px) 100vw, 33vw"
+                src={service.image}
+                alt={service.title}
+                className="absolute inset-0 object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-700"
+              />
+
+              {/* Gradient Overlay - Bottom to Top for the copy */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#132322] via-[#132322]/60 to-transparent" />
+
+              {/* 
+                Top Left Corner: Small Text 
+                Added absolute positioning to pin it to the top left, 
+                and increased the size (text-lg).
+              */}
+              <small className="absolute top-8 left-8 z-10 text-[#e2c99f] text-lg tracking-[0.1em] uppercase font-bold">
+                0{i + 1} · Our service
+              </small>
+
+              {/* Content (Restored to bottom via flex-end) */}
+              <div className="absolute bottom-8 left-8 right-8 z-10">
+                <h3 className="font-serif text-2xl md:text-3xl mb-3 leading-tight">
+                  {service.title}
+                </h3>
+
+                <p className="text-[#d3dcda] text-[0.85rem] md:text-[0.9rem] leading-relaxed">
+                  {service.text}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────────────────────
+   Global Design Tokens
+   ───────────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #20312f;
+  --muted: #66736f;
+  --cream: #f5f2eb;
+  --sand: #d9c6a8;
+  --rust: #bd6748;
+  --line: #dcded8;
+  --white: #fffdf9;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─────────────────────────────────────────────────────────────
+   Base Resets & Global Styles
+   ───────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", Times, sans-serif;
+}
+
+/* Typography rhythm for headings and paragraphs */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
+/* ─────────────────────────────────────────────────────────────
+   Marquee Animation
+   ───────────────────────────────────────────────────────────── */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Pause the marquee when the user hovers over the container */
+.group:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Reduced Motion
+   ───────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  /* Stop the marquee and let the logos wrap gracefully */
+  .animate-marquee {
+    animation: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Hide the duplicated sequence for screen readers/static view */
+  .marquee-duplicate {
+    display: none !important;
+  }
 }
