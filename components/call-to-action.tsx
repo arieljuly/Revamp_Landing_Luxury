@@ -1,3 +1,4 @@
+import { MoveUpRight } from "lucide-react";
 export function CallToAction() {
   return (
     <section className="relative py-24 md:py-32 overflow-hidden bg-[#d9c6a8]">
@@ -33,7 +34,7 @@ export function CallToAction() {
               className="inline-flex items-center justify-center gap-2 self-start min-h-[52px] px-8 bg-[#20312f] text-white text-[0.73rem] font-bold tracking-[0.12em] uppercase hover:bg-[#bd6748] transition-colors duration-300"
             >
               Start a conversation{" "}
-              <span className="text-lg leading-none">↗</span>
+              <span className="text-sm leading-none"><MoveUpRight /></span>
             </a>
           </div>
         </div>
