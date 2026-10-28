@@ -2,6 +2,7 @@ import { CallToAction } from "@/components/call-to-action";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
 import { Location } from "@/components/location";
+import { LogoMarquee } from "@/components/logo-marquee";
 import { NavBar } from "@/components/nav-bar";
 import { PhotoGallery } from "@/components/photo-gallery";
 import { SearchListing } from "@/components/search-listing";
@@ -17,6 +18,7 @@ export default function Home() {
       <SearchListing />
       <PhotoGallery />
       <Service />
+      <LogoMarquee />
       <CallToAction />
       <Location />
       <Footer />

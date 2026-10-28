@@ -59,17 +59,20 @@ p {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-100%); 
   }
 }
 
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 35s linear infinite;
 }
 
-/* Pause the marquee when the user hovers over the container */
-.group:hover .animate-marquee {
-  animation-play-state: paused;
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────

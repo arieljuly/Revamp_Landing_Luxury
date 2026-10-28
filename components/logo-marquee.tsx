@@ -11,24 +11,26 @@ const LOGOS = [
 
 export function LogoMarquee() {
   return (
-    <div className="w-full bg-[#fffdf9] py-12 md:py-16 overflow-hidden border-y border-[#dcded8]">
-      <div className="w-full max-w-[1160px] mx-auto px-6 md:px-8 mb-8">
+    <div className="w-full bg-[#fffdf9] py-16 border-y border-[#dcded8] overflow-hidden relative">
+      <div className="w-full max-w-[1160px] mx-auto px-6 md:px-8 mb-10">
         <h2 className="text-center text-[#66736f] text-[0.65rem] font-bold tracking-[0.2em] uppercase">
           Trusted by industry leaders
         </h2>
       </div>
 
-      {/* 
-        The Marquee Container 
-        Using group to pause on hover
-      */}
-      <div className="relative flex overflow-x-hidden group">
-        {/* First sequence of logos */}
-        <div className="flex animate-marquee whitespace-nowrap items-center gap-16 md:gap-24 px-8 md:px-12">
+      {/* Edge Fade Gradients */}
+      <div className="absolute top-0 bottom-0 left-0 w-24 md:w-32 bg-gradient-to-r from-[#fffdf9] to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 bottom-0 right-0 w-24 md:w-32 bg-gradient-to-l from-[#fffdf9] to-transparent z-10 pointer-events-none" />
+
+      {/* Marquee Container */}
+      <div className="relative flex w-full overflow-hidden">
+        
+        {/* Sequence 1 */}
+        <div className="flex animate-marquee whitespace-nowrap items-center gap-16 md:gap-24 px-8 md:px-12 shrink-0">
           {LOGOS.map((src, index) => (
             <div
               key={`${src}-1`}
-              className="relative w-32 md:w-40 h-16 md:h-20 flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+              className="relative w-32 md:w-40 h-16 md:h-20 flex-shrink-0"
             >
               <Image
                 src={src}
@@ -41,15 +43,15 @@ export function LogoMarquee() {
           ))}
         </div>
 
-        {/* Duplicated sequence for seamless looping */}
-        <div
-          className="absolute top-0 flex animate-marquee whitespace-nowrap items-center gap-16 md:gap-24 px-8 md:px-12"
+        {/* Sequence 2 (Duplicate for seamless loop) */}
+        <div 
+          className="flex animate-marquee whitespace-nowrap items-center gap-16 md:gap-24 px-8 md:px-12 shrink-0"
           aria-hidden="true"
         >
           {LOGOS.map((src, index) => (
             <div
               key={`${src}-2`}
-              className="relative w-32 md:w-40 h-16 md:h-20 flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+              className="relative w-32 md:w-40 h-16 md:h-20 flex-shrink-0"
             >
               <Image
                 src={src}
@@ -61,6 +63,7 @@ export function LogoMarquee() {
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );
